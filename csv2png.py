@@ -16,16 +16,12 @@ for row in csv_image:
 	image_height += 1
 	image_width = max(image_width, w)
 image = Image.new('RGB', (image_width, image_height))
-y = 0
-for r in raster:
-	x = 0
-	for p in r:
+for y, r in enumerate(raster):
+	for x, p in enumerate(r):
 		if p.strip() == '0':
 			c = 0
 		else:
 			c = 255
 		image.putpixel((x, y), (c, c, c))
-		x += 1
-	y += 1
 image.save(output_fn)
 
